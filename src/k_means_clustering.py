@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import spatial
-
+import matplotlib.pyplot as plt
 
 class KMeansClustering():
     '''this implimentation is going to find the distances between 
@@ -14,21 +14,38 @@ class KMeansClustering():
         self.distances = [] # will hold the distance matrix
 
     def fit(self, X):
-        centers = np.array()
-        if type(X) != np.array():
-            raise Exception(TypeError)
-        else:
-            self.data = X
-            means = self.get_distances(X)
-            centers_index = np.argsort(means, axis=0)
-            return self.data[centers_index[:self.k]]
+        self.data = X.copy()
+        self.distances, self.means = self.get_distances(X)
+        self.centers_index = np.argsort(self.means, axis=0)
+        self.search()
         
+    def search(self):
+        searching = True
+        for i in range(50):
+            centers = self.centers_index[:self.k]
+            self.centers = self.data[centers]
+            self.plot()
+            self.data[centers] # the points that we need to get distances for
+            dists, _ = self.get_distances(self.data[centers])
+            sums = dists.sum(0)
+            worst = sums.argmin()
+            centers[worst] # index of the point to be eliminated
+            self.centers_index = self.centers_index[self.centers_index != centers[worst]]
+            
+        
+    def get_distances(self, X):
+        '''this little helper function builds out the 
+        distances matrix'''
+        distances = []
+        for x in X:
+            y = spatial.distance_matrix(X, x.reshape(1,2))
+            distances.append(np.squeeze(y))
+        distances = np.array(distances)
+        return distances, distances.mean(0)
     
-    def get_distances(self)
-    '''this little helper function builds out the 
-    distances matrix of all the '''
-        for x in self.data:
-            y = spatial.distance_matrix(self.data, x.reshape(1,2))
-            self.distances.append(np.squeeze(y))
-        self.distances = np.array(self.distances)
-        return self.distances.mean(0)
+    def plot(self):
+        x, y = self.data.T
+        cx, cy = self.centers.T
+        plt.scatter(x, y)
+        plt.scatter(cx, cy, c='red')
+        plt.show()

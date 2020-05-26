@@ -1,6 +1,6 @@
 import numpy as np
 import scipy
-
+from scipy import spatial
 
 class KNearestNeighbors():
     def __init__(self, neighbors):
@@ -9,24 +9,10 @@ class KNearestNeighbors():
     def fit(self, data):
         self.data = data
 
-    def predict(self, X):
-        '''This is a rough and ugly implimentation. There is no optimiztion here yet
-        its just a check to see if I can get it to work in the super base case'''
-        matches = [-1] * self.neighbors
-        buffer = []
-        for i in range(len(matches)):
-            dist = -1
-            val = None
-            for d in self.data:
-                if dist == -1 or np.abs(X - d) < dist:
-                    dist = np.abs(X - d)
-                    val = d
-                    buffer.append(d)
-                    self.data.remove(d)
-            matches[i] = val
-        for b in buffer:
-            self.data.append(b)
-        return matches
+    def predict(self, y):
+        dist = spatial.distance_matrix(self.data, y)
+        kmin_index = np.argsort(dist, axis=0)
+        return self.data[kmin_index[:self.neighbors]], dist[kmin_index[:self.neighbors]]
 
 
 if __name__ == '__main__':

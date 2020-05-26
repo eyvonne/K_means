@@ -1,4 +1,4 @@
-# K-Nearest-Neighbors
+# K-Nearest-Neighbors and K-means-clustering
 a basic implementation of k-nearest-neighbors
 
 This project is a build week for Lambda School Computer Science Unit 1. It was completed durring the week of May 25th.

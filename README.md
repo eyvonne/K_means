@@ -16,9 +16,11 @@ Today I'm going to focus on getting the general structure of the class built. MV
 
 I ran through the basic KNN classifier yesterday so I'm going to switch to k-means clustering. I'm going to start a KMC classifier, I have an idea involving a distance matrix but its only a basic idea that will not work fully. Perhaps something along the lines of finding the lowest average with the highest distances from each other.
 
-OK, I was totally making it harder than it needs to be. I've implimented a basic solution that works but needs improvement following the pattern:
+OK, I was totally making it harder than it needs to be. I've implemented a basic solution that works but needs improvement following the pattern:
 - select K random points
 - group the data around those points
 - get the average distances of the groups
 - use those averages as the new center
 - loop until the centers don't change
+
+Now that I have MVP for both of these algorithms I'm going to implement a solution to my labs project with earthquakes.

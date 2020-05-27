@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# as part of my studies I'm generating a lot of graphs at the command line
+# they don't need to go on github
+*.png

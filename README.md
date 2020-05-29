@@ -24,3 +24,15 @@ OK, I was totally making it harder than it needs to be. I've implemented a basic
 - loop until the centers don't change
 
 Now that I have MVP for both of these algorithms I'm going to implement a solution to my labs project with earthquakes.
+
+
+### Wednesday
+
+I focused on getting quake data to line up. I started the day by using my API to pull the last month of data from each source,
+then worked with my algorithm to line the data up.
+
+My first thought was to focus the search on lat, lon, and mag. This returned good results from my data, so I pulled down all of the data from the server. For some reason when pulling it down from the server there was much less lining up, so I think something is wrong with how I'm setting up the search. I'll have to come back to this tomorrow
+
+### Thursday
+
+I found out that the job that got me into data Science is currently hiring and spent all day working on my application. I'm going to work on writing up a blog post this evening about my working algorithm and if I have time work a little more on the earthquakes.

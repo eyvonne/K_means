@@ -15,7 +15,7 @@ between points.
 To find that I decided to use a slightly less naive implementation. I used the `distance_matrix`
 method in the spatial module of the scipy library. This method returns the Euclidian distance between
 all the points described by the two arrays provided. Scipy is implemented such that these calculations are
-done much more efficiently than even the simple 1d algorithm that I had done was much slower even across
+done much more efficiently than even the simple 1d algorithm that I had done and was faster even across
 higher-dimensional data.
 
 
